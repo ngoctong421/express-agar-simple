@@ -21,7 +21,18 @@ document.querySelector('.name-form').addEventListener('submit', (e) => {
   e.preventDefault();
 
   player.name = document.querySelector('#name-input').value;
+  document.querySelector('.player-name').innerText = player.name;
 
   loginModal.hide();
   spawnModal.show();
+});
+
+document.querySelector('.start-game').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  spawnModal.hide();
+
+  const elArray = document.querySelectorAll('.hiddenOnStart');
+
+  elArray.forEach((el) => el.removeAttribute('hidden'));
 });
