@@ -1,4 +1,3 @@
-console.log('ok');
 let wHeight = window.innerHeight;
 let wWidth = window.innerWidth;
 
@@ -35,4 +34,5 @@ document.querySelector('.start-game').addEventListener('click', (e) => {
   const elArray = document.querySelectorAll('.hiddenOnStart');
 
   elArray.forEach((el) => el.removeAttribute('hidden'));
+  init();
 });
