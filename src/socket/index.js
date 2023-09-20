@@ -28,6 +28,21 @@ const initGame = () => {
   }
 };
 
+const getLeaderBoard = () => {
+  const leaderBoardArray = players.map((curPlayer) => {
+    if (curPlayer.playerData) {
+      return {
+        name: curPlayer.playerData.name,
+        score: curPlayer.playerData.score,
+      };
+    } else {
+      return {};
+    }
+  });
+
+  return leaderBoardArray;
+};
+
 initGame();
 
 io.on('connect', (socket) => {
@@ -91,6 +106,7 @@ io.on('connect', (socket) => {
       };
 
       io.to('game').emit('orbSwitch', orbData);
+      io.to('game').emit('updateLeaderBoard', getLeaderBoard());
     }
 
     const absorbData = checkForPlayerCollisions(
@@ -103,6 +119,7 @@ io.on('connect', (socket) => {
 
     if (absorbData) {
       io.to('game').emit('playerAbsorbed', absorbData);
+      io.to('game').emit('updateLeaderBoard', getLeaderBoard());
     }
   });
 
