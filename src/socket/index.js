@@ -3,6 +3,10 @@ const Orb = require('../classes/Orb');
 const PlayerConfig = require('../classes/PlayerConfig');
 const PlayerData = require('../classes/PlayerData');
 const Player = require('../classes/Player');
+const {
+  checkForOrbCollisions,
+  checkForPlayerCollisions,
+} = require('./checkCollisions');
 
 const orbs = [];
 const settings = {
