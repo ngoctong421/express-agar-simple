@@ -15,6 +15,7 @@ const settings = {
   defaultGenericOrbSize: 5,
 };
 const players = [];
+const playerForUsers = [];
 let tickTockInterval;
 
 const initGame = () => {
@@ -31,7 +32,7 @@ io.on('connect', (socket) => {
   socket.on('init', (playerObj, ackCallback) => {
     if (players.length === 0) {
       tickTockInterval = setInterval(() => {
-        io.to('game').emit('tick', players);
+        io.to('game').emit('tick', playerForUsers);
       }, 33);
     }
 
@@ -42,11 +43,16 @@ io.on('connect', (socket) => {
     player = new Player(socket.id, playerConfig, playerData);
 
     players.push(player);
+    playerForUsers.push({ playerData });
 
-    ackCallback(orbs);
+    ackCallback({ orbs, indexInPlayers: playerForUsers.length - 1 });
   });
 
   socket.on('tock', (data) => {
+    if (!player.playerConfig) {
+      return;
+    }
+
     speed = player.playerConfig.speed;
     const xV = (player.playerConfig.xVector = data.xVector);
     const yV = (player.playerConfig.yVector = data.yVector);
