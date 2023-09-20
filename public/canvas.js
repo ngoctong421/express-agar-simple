@@ -48,19 +48,19 @@ canvas.addEventListener('mousemove', (e) => {
   if (angleDeg >= 0 && angleDeg < 90) {
     xVector = 1 - angleDeg / 90;
     yVector = -(angleDeg / 90);
-    console.log('Mouse is in lower right');
+    // console.log('Mouse is in lower right');
   } else if (angleDeg >= 90 && angleDeg <= 180) {
     xVector = -(angleDeg - 90) / 90;
     yVector = -(1 - (angleDeg - 90) / 90);
-    console.log('Mouse is in lower left');
+    // console.log('Mouse is in lower left');
   } else if (angleDeg >= -180 && angleDeg < -90) {
     xVector = (angleDeg + 90) / 90;
     yVector = 1 + (angleDeg + 90) / 90;
-    console.log('Mouse is in top left');
+    // console.log('Mouse is in top left');
   } else if (angleDeg < 0 && angleDeg >= -90) {
     xVector = (angleDeg + 90) / 90;
     yVector = 1 - (angleDeg + 90) / 90;
-    console.log('Mouse is in top right');
+    // console.log('Mouse is in top right');
   }
 
   player.xVector = xVector ? xVector : 0.1;

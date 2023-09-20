@@ -26,3 +26,11 @@ socket.on('tick', (playersArr) => {
     player.locY = players[player.indexInPlayers].playerData.locY;
   }
 });
+
+socket.on('orbSwitch', (orbData) => {
+  orbs.splice(orbData.capturedOrbI, 1, orbData.newOrb);
+});
+
+socket.on('playerAbsorbed', (absorbData) => {
+  console.log(absorbData);
+});
