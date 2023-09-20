@@ -26,6 +26,8 @@ const initGame = () => {
 initGame();
 
 io.on('connect', (socket) => {
+  let player = {};
+
   socket.on('init', (playerObj, ackCallback) => {
     if (players.length === 0) {
       tickTockInterval = setInterval(() => {
@@ -37,11 +39,32 @@ io.on('connect', (socket) => {
 
     const playerConfig = new PlayerConfig(settings);
     const playerData = new PlayerData(playerObj.playerName, settings);
-    const player = new Player(socket.id, playerConfig, playerData);
+    player = new Player(socket.id, playerConfig, playerData);
 
     players.push(player);
 
     ackCallback(orbs);
+  });
+
+  socket.on('tock', (data) => {
+    speed = player.playerConfig.speed;
+    const xV = (player.playerConfig.xVector = data.xVector);
+    const yV = (player.playerConfig.yVector = data.yVector);
+
+    if (
+      (player.playerConfig.locX < 5 && xV < 0) ||
+      (player.playerConfig.locX > 500 && xV > 0)
+    ) {
+      player.locY -= speed * yV;
+    } else if (
+      (player.playerConfig.locY < 5 && yV > 0) ||
+      (player.playerConfig.locY > 500 && yV < 0)
+    ) {
+      player.locX += speed * xV;
+    } else {
+      player.playerConfig.locX += speed * xV;
+      player.playerConfig.locY -= speed * yV;
+    }
   });
 
   socket.on('disconnect', () => {
