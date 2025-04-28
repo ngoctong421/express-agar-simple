@@ -3,6 +3,8 @@ const cors = require('cors');
 const socketio = require('socket.io');
 const { instrument } = require('@socket.io/admin-ui');
 
+const PORT = 3000;
+
 const app = express();
 
 app.use(
@@ -14,8 +16,8 @@ app.use(
 
 app.use(express.static(`${__dirname}/../public`));
 
-const server = app.listen(9000, () => {
-  console.log('http://localhost:9000');
+const server = app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}/`);
 });
 
 const io = socketio(server);
