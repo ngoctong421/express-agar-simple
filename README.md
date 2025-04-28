@@ -1,10 +1,10 @@
-# Express Agar Simple
+# Express Agar Simple Game
 
-A simple implementation of Agar.io game using Express.js and Socket.IO.
+A simple implementation of Agar.io using Express.js and Socket.IO.
 
 ## Description
 
-This project is a basic clone of the popular online multiplayer game Agar.io, built with:
+This project is a basic clone of the popular browser-based game Agar.io, built with:
 
 - Express.js for the server
 - Socket.IO for real-time communication
@@ -13,29 +13,29 @@ This project is a basic clone of the popular online multiplayer game Agar.io, bu
 ## Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/ngoctong421/express-agar-simple.git
+
+# Install dependencies
 npm install
-```
 
-## Usage
-
-```bash
+# Start the server
 npm start
 ```
 
-Then open your browser and navigate to `http://localhost:3000`
+## How to Play
 
-## Features
+1. Open your browser and navigate to `http://localhost:3000`
+2. Move your mouse to control your cell
+3. Eat smaller cells to grow bigger
+4. Avoid larger cells that can eat you
 
-- Real-time multiplayer gameplay
-- Basic player movement
-- Simple collision detection
-- Player growth mechanics
+## Technologies Used
 
-## Dependencies
-
+- Node.js
 - Express.js
 - Socket.IO
-- Node.js
+- HTML5 Canvas
 
 ## License
 
