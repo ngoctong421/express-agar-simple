@@ -1,4 +1,6 @@
-const socket = io.connect('http://localhost:9000');
+const PORT = 3000;
+
+const socket = io.connect(`http://localhost:${PORT}`);
 
 const init = async () => {
   const initData = await socket.emitWithAck('init', {
