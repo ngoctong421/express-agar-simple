@@ -36,7 +36,3 @@ npm start
 - Express.js
 - Socket.IO
 - HTML5 Canvas
-
-## License
-
-MIT
